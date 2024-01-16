@@ -1,7 +1,7 @@
 import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Container from 'react-bootstrap/Container'
-import { HomePage } from './Pages/HomePage'
+import HomePage from './Pages/HomePage.jsx'
 import Footer from './Components/Shared/Footer'
 
 function App() {
