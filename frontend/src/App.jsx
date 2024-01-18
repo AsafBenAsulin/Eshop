@@ -10,7 +10,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className='d-flex flex-column side-allPage min-width'>
-        <Header/>
+        <Header />
         <main>
           <Container>
             <Routes>
