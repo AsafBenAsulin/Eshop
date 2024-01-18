@@ -3,6 +3,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import User from "./models/User.js";
 import dotenv from "dotenv"
+import seedRouter from "./routes/seedRouter.js";
 
 const app = express();
 dotenv.config();
@@ -13,6 +14,12 @@ app.use(express.urlencoded({ extended: false }));//this is common practice for u
 
 const PORT = process.env.PORT || 8080
 const CONNECTION_STRING = process.env.MONGO_CONNECTION_STRING
+
+//routes
+app.use("/api/v1/seed", seedRouter)
+app.use((err, req, res, next) =>{
+    res.status(500).send({message: err.message})
+})
 
 mongoose.connect(CONNECTION_STRING).then(
     () => {
