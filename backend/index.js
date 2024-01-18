@@ -12,7 +12,7 @@ app.use(express.json());//parses JSONs
 app.use(express.urlencoded({ extended: false }));//this is common practice for urlencoded
 
 const PORT = process.env.PORT || 8080
-const CONNECTION_STRING = process.env.MONGO_CoNNECTION_STRING
+const CONNECTION_STRING = process.env.MONGO_CONNECTION_STRING
 
 mongoose.connect(CONNECTION_STRING).then(
     () => {
