@@ -15,7 +15,7 @@ const SignIn = () => {
         try {
             const { data } = await axios.post("/api/v1/users/signin", { email: email, password: password });
             localStorage.setItem("userInfo",JSON.stringify(data));
-            navigate("/")
+            navigate("/");
         } catch (error) {
             toast.error(getError(error));
         }
