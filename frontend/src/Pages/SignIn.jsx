@@ -1,7 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import Title from "../Components/Shared/Title.jsx";
-import { axios, React, useState, Container, Form ,Button,Link,toast} from "../imports"
+import { axios, React, useState, Container, Form, Button, Link, toast } from "../imports"
 import { getError } from "../utils.js";
+import { useContext } from "react";
+import { USER_SIGNIN } from "../Actions.jsx";
+import {Store} from '../store.jsx'
 
 
 
@@ -9,17 +12,19 @@ const SignIn = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+    const { dispatch: ctxDispatch } = useContext(Store)
 
     const submitHandler = async (e) => {
         e.preventDefault();
         try {
             const { data } = await axios.post("/api/v1/users/signin", { email: email, password: password });
-            localStorage.setItem("userInfo",JSON.stringify(data));
+            ctxDispatch({ type: USER_SIGNIN, payload: data })
+            localStorage.setItem("userInfo", JSON.stringify(data));
             navigate("/");
         } catch (error) {
             toast.error(getError(error));
         }
-    
+
     }
 
     return (

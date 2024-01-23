@@ -5,6 +5,7 @@ import App from './App.jsx'
 import './index.css'
 import { HelmetProvider } from 'react-helmet-async'
 import axios from 'axios'
+import {StoreProvider} from "./store.jsx"
 
 axios.defaults.baseURL = 'http://localhost:8080'
 
