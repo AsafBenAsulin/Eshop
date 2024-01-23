@@ -5,7 +5,12 @@ import { PropTypes } from "./imports";
 export const Store = createContext();
 
 const initialState = {
-    userInfo: localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
+    userInfo: localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null,
+    cart: {
+        cartItems: localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [],
+        shippingAddress: localStorage.getItem('shippingAddress') ? JSON.parse(localStorage.getItem('shippingAddress')) : {},
+        paymentMethods:localStorage.getItem('paymentMethods') ? JSON.parse(localStorage.getItem('paymentMethods')) : ""
+    }
 }
 
 export const StoreProvider = ({ children }) => {
@@ -14,4 +19,4 @@ export const StoreProvider = ({ children }) => {
     return <Store.Provider value={body}>{children}</Store.Provider>
 }
 
-StoreProvider.propTypes = {children:PropTypes.node}
+StoreProvider.propTypes = { children: PropTypes.node }

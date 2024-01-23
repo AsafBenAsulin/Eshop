@@ -5,11 +5,20 @@ import { LinkContainer } from 'react-router-bootstrap'
 import { Link } from 'react-router-dom'
 import SearchBox from './SearchBox'
 import NavDropdown from 'react-bootstrap/NavDropdown'
-import { Store } from '../../store'
+import { Store } from '../../store.jsx'
+import { USER_SIGNOUT } from '../../Actions'
 
 const Header = () => {
+
     const { state } = useContext(Store);
     const { userInfo } = state;
+    const { dispatch: ctxDispatch } = useContext(Store);
+
+    const signOutHandler= () =>{
+        ctxDispatch({ type: USER_SIGNOUT});
+        localStorage.removeItem("userInfo");
+    }
+
     return (
         <header>
 
@@ -29,7 +38,7 @@ const Header = () => {
                     {userInfo ? (
                         <NavDropdown className="text-white" title={userInfo.name}>
                             <NavDropdown.Divider />
-                            <Link to="#signout" className="dropdown item">
+                            <Link onClick={signOutHandler} className="dropdown item">
                                 Sign out
                             </Link>
                         </NavDropdown>
