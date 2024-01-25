@@ -1,10 +1,11 @@
-import React, { useContext } from 'react'
-import PropTypes from 'prop-types'
-import Card from 'react-bootstrap/Card'
-import { Link } from 'react-router-dom'
+import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
+import Card from 'react-bootstrap/Card';
+import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Rating from '../Shared/Rating';
 import { Store } from '../../store';
+import { addToCartHandler } from '../../utils';
 
 
 
