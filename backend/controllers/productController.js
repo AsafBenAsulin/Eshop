@@ -20,7 +20,7 @@ const getProductByToken = async (req, res) => {
 
   const { token } = req.params;
 
-  const product = await Product.findOne({ toke: token });
+  const product = await Product.findOne({ token: token });
   if (product) {
     res.send(product);
   } else {
