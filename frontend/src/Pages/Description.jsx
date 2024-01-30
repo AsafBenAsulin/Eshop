@@ -23,7 +23,7 @@ const Description = () => {
     const navigate = useNavigate();
     const { state, dispatch: ctxDispatch } = useContext(Store);
     const { cart } = state;
-    const cartItems = cart;
+    const {cartItems} = cart;
 
     useEffect(() => {
         const getProduct = async () => {
