@@ -39,14 +39,14 @@ const Description = () => {
         getProduct();
     }, [token]);
 
-    const addToCart= async() =>{
-       await addToCartHandler(data,cartItems,ctxDispatch);
-       navigate("/cart")
+    const addToCart = async () => {
+        await addToCartHandler(data, cartItems, ctxDispatch)
+        navigate("/cart");
     }
 
     return (
         <div>
-            <Title title = {data.title}/>
+            <Title title={data.title} />
             {loading ? <Loading /> : error ? <MessageBox variant="danger">{error}</MessageBox> : (
                 <div>
                     <Row>
@@ -54,10 +54,10 @@ const Description = () => {
                             <img width={400} src={data.image} alt={data.title}></img>
                         </Col>
                         <Col md={3}>
-                            <ProductDescription {...data}/>
+                            <ProductDescription {...data} />
                         </Col>
                         <Col md={3}>
-                            <CartDescription addToCart={addToCart} product={data}/>
+                            <CartDescription addToCart={addToCart} product={data} />
                         </Col>
                     </Row>
                 </div>
