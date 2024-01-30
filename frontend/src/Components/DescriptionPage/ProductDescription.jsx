@@ -1,7 +1,7 @@
 import React from 'react'
 import ListGroup from "react-bootstrap/ListGroup"
 import { PropTypes } from '../../imports'
-import Rating from '../Shared/Rating'
+import Rating from '../Shared/Rating.jsx'
 
 
 const ProductDescription = ({ title, rating, price, description }) => {
@@ -17,17 +17,15 @@ const ProductDescription = ({ title, rating, price, description }) => {
                 Price: ${price}
             </ListGroup.Item>
             <ListGroup.Item>
-                Description:<p className='lead'>{description}</p>
+                Description:<p className="lead" style={{ wordWrap: "break-word" }}>{description}</p>
             </ListGroup.Item>
         </ListGroup>
-    )
-}
-
-
+    );
+};
 ProductDescription.propTypes = {
     title: PropTypes.string,
     rating: PropTypes.object,
     price: PropTypes.number,
-    description: PropTypes.string
-}
-export default ProductDescription
+    description: PropTypes.string,
+};
+export default ProductDescription;

@@ -20,7 +20,7 @@ function App() {
         <ToastContainer position='bottom-center' limit={1} />
         <Header />
         <main>
-          <Container>
+          <Container className='mt-3'>
             <Routes>
               <Route path="/" element={<HomePage />}></Route>
               <Route path="/signin" element={<SignIn />}></Route>

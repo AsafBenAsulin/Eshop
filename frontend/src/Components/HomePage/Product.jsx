@@ -13,7 +13,7 @@ const Product = ({ product }) => {
     const {state,dispatch:ctxDispatch} = useContext(Store)
     const {cartItems} = state.cart
     return (
-        <Card className='product-card'>
+        <Card className='product-card mt-3'>
             <Link to={`/product/${product.token}`}>
                 <Card.Img variant='top' src={product.image} alt={product.title} />
             </Link>
