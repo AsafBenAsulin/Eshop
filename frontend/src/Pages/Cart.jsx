@@ -6,11 +6,13 @@ import ItemsInCart from '../Components/CartPage/ItemsInCart';
 import CheckOut from '../Components/CartPage/CheckOut';
 import { ADD_TO_CART, REMOVE_FROM_CART } from '../Actions';
 import { getError } from '../utils';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
     const { state, dispatch: ctxDispatch } = useContext(Store);
     const { cart } = state;
     const { cartItems } = cart;
+    const navigate = useNavigate();
 
     const updateCartHandler = async (product, quantity) => {
         try {
@@ -27,9 +29,13 @@ const Cart = () => {
         }
 
     }
-    
-    const removeItemHandler = async (product) =>{
-        ctxDispatch({type: REMOVE_FROM_CART,payload:product})
+
+    const removeItemHandler = async (product) => {
+        ctxDispatch({ type: REMOVE_FROM_CART, payload: product });
+    }
+
+    const checkoutHandler = () => {
+        navigate("/signin?redirect=/shipping");
     }
 
     return (
@@ -39,8 +45,8 @@ const Cart = () => {
                 <Col md={8}>
                     <ItemsInCart cartItems={cartItems} updateCartHandler={updateCartHandler} removeItemHandler={removeItemHandler}></ItemsInCart>
                 </Col>
-                <Col md={4}>
-                    <CheckOut cartItems={cartItems}></CheckOut>
+                <Col md={4} className='mt-2' style={{position:'fixed',right: 15}}>
+                    <CheckOut cartItems={cartItems} checkoutHandler={checkoutHandler}></CheckOut>
                 </Col>
             </Row>
 

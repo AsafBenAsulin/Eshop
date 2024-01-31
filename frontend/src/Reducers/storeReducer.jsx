@@ -1,4 +1,4 @@
-import { USER_SIGNIN, USER_SIGNOUT, ADD_TO_CART,REMOVE_FROM_CART } from '../Actions.jsx';
+import { USER_SIGNIN, USER_SIGNOUT, ADD_TO_CART, REMOVE_FROM_CART, SAVE_SHIPPING_ADDRESS } from '../Actions.jsx';
 
 const storeReducer = (state, { type, payload }) => {
   switch (type) {
@@ -24,18 +24,24 @@ const storeReducer = (state, { type, payload }) => {
       const cartItems = existingItem
         ? state.cart.cartItems.map((item) =>
           item._id === existingItem._id ? newItem : item
-        ) 
+        )
         : [...state.cart.cartItems, newItem];
 
       localStorage.setItem("cartItems", JSON.stringify(cartItems));
 
       return { ...state, cart: { ...state.cart, cartItems } };
     }
-    case REMOVE_FROM_CART:{
-      const cartItems = state.cart.cartItems.filter((Product)=>Product._id != payload._id);
-      localStorage.setItem(cartItems,JSON.stringify(cartItems));
+    case REMOVE_FROM_CART: {
+      const cartItems = state.cart.cartItems.filter((Product) => Product._id != payload._id);
+      localStorage.setItem(cartItems, JSON.stringify(cartItems));
       return { ...state, cart: { ...state.cart, cartItems } };
 
+    }
+    case SAVE_SHIPPING_ADDRESS: {
+      const shippingAddress = payload;
+      console.log(payload)
+      localStorage.setItem("shippingAddress", JSON.stringify(shippingAddress));
+      return { ...state, cart: { ...state.cart, shippingAddress: shippingAddress } };
     }
     default: return { ...state }
 

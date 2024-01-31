@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Card, PropTypes } from '../../imports';
 import ListGroup from 'react-bootstrap/ListGroup';
 
-const CheckOut = ({ cartItems }) => {
+const CheckOut = ({ cartItems ,checkoutHandler}) => {
     return (
         <Card>
             <Card.Body>
@@ -18,7 +18,7 @@ const CheckOut = ({ cartItems }) => {
                     </ListGroup.Item>
                     <ListGroup.Item>
                         <div className='d-grid'>
-                            <Button type="button" variant='primary' disabled={cartItems.length===0}>
+                            <Button type="button" variant='primary' disabled={cartItems.length===0} onClick={()=>checkoutHandler()}>
                                 Check Out
                             </Button>
                         </div>
@@ -30,6 +30,7 @@ const CheckOut = ({ cartItems }) => {
 }
 
 CheckOut.propTypes = {
-    cartItems: PropTypes.array
+    cartItems: PropTypes.array,
+    checkoutHandler: PropTypes.func,
 };
 export default CheckOut

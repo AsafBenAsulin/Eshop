@@ -1,8 +1,8 @@
 import { Button, Container, Form, React, useState, Link,toast ,axios} from '../imports'
 import Title from '../Components/Shared/Title'
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Store } from '../store.jsx'
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { USER_SIGNIN } from "../Actions.jsx";
 import { getError } from '../utils';
 
@@ -13,7 +13,17 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
-  const { dispatch: ctxDispatch } = useContext(Store)
+  const {state:{userInfo},dispatch: ctxDispatch } = useContext(Store)
+  const {search} = useLocation();
+  const redirectURL=new URLSearchParams(search);
+  const redirectValue=redirectURL.get("redirect");
+  const redirect = redirectValue ?redirectValue:"/";
+
+  useEffect(() => {
+  if(userInfo){
+      navigate(redirect)
+  }
+  }, [navigate,redirect,userInfo]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -22,7 +32,7 @@ const SignUp = () => {
         const { data } = await axios.post("/api/v1/users/signup", { name:name,email: email, password: password });
         ctxDispatch({ type: USER_SIGNIN, payload: data })
         localStorage.setItem("userInfo", JSON.stringify(data));
-        navigate("/");
+        navigate(redirect);
       } else {
         toast.error("Passwords do not match");
       }
@@ -59,7 +69,7 @@ const SignUp = () => {
         </div>
         <div className="mb-3">
           Already have an account?{" "}
-          <Link to="/signin">Log in</Link>
+          <Link to={`/signin?redirect=${redirect}`}>Log in</Link>
         </div>
       </Form>
     </Container>
