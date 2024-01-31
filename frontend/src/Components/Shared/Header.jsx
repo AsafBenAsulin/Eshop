@@ -28,7 +28,7 @@ const Header = () => {
             <NavBar bg="dark" variant="dark">
                 <Container>
                     <Link onClick={() => navigate(-1)}>
-                        {location.pathname !== '/' && <i className="far fa-arrow-alt-circle-left text-white align-arrow-right"> Back</i>}
+                        {location.pathname !== '/' && <i className="fa fa-arrow-left text-white align-arrow-right"> Back</i>}
                     </Link>
                     <LinkContainer to='/'>
                         <NavBar.Brand>
