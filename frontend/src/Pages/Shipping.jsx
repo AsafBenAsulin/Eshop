@@ -54,7 +54,7 @@ const Shipping = () => {
                     <Form.Control name='country' required/>
                 </Form.Group>
                 <div className='mb-3'>
-                    <Button type='submit' variant='primary'>Submit</Button>
+                    <Button type='submit' variant='primary'>Continue</Button>
                 </div>
             </Form>
             </Container>
