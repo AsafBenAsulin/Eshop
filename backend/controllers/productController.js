@@ -8,7 +8,7 @@ const productData = async (req, res) => {
 const getProductById = async (req, res) => {
 
   const product = await Product.findById(req.params.id);
-  
+
   if (product) {
     res.send(product);
   } else {
@@ -28,4 +28,9 @@ const getProductByToken = async (req, res) => {
   }
 }
 
-export { productData, getProductById, getProductByToken }
+const getCategories = async (req, res) => {
+  const categories = await Product.find().distinct("category");
+  res.send(categories);
+}
+
+export { productData, getProductById, getProductByToken, getCategories }
