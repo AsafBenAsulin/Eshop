@@ -142,7 +142,7 @@ const Search = () => {
                     ) : (
                         <>
                             <Row>
-                                <Col md={6}>
+                                <Col>
                                     <div>
                                         {countProducts === 0 ? "No" : countProducts} Results
                                         {query !== "all" && " for " + query}
