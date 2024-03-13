@@ -8,8 +8,8 @@ import { addToCartHandler, getError } from "../utils";
 import Loading from "../Components/Shared/Loading.jsx";
 import MessageBox from "../Components/Shared/MessageBox.jsx";
 import { Col, Row } from "../imports";
-import ProductDescription from "../components/DescriptionPage/ProductDescription";
-import CartDescription from "../components/DescriptionPage/CartDescription";
+import ProductDescription from "../components/DescriptionPage/ProductDescription.jsx";
+import CartDescription from "../components/DescriptionPage/CartDescription.jsx";
 import Title from "../Components/Shared/Title.jsx";
 
 const initialState = { loading: true, error: "", data: [] };
