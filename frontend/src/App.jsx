@@ -1,7 +1,6 @@
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-//import Title from './Components/Shared/Title.jsx'
 import Container from "react-bootstrap/Container";
 import { HomePage } from "./Pages/HomePage.jsx";
 import Footer from "./Components/Shared/Footer";

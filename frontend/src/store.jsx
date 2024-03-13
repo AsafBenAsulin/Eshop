@@ -1,6 +1,6 @@
 import { createContext, useReducer } from "react";
+import PropTypes from "prop-types";
 import storeReducer from "./Reducers/storeReducer";
-import { PropTypes } from "./imports";
 
 export const Store = createContext();
 const initialState = {
@@ -25,4 +25,8 @@ export const StoreProvider = ({ children }) => {
   const body = { state, dispatch };
   return <Store.Provider value={body}>{children}</Store.Provider>;
 };
-StoreProvider.propTypes = { children: PropTypes.node };
+
+
+StoreProvider.propTypes = {
+  children: PropTypes.node,
+};
