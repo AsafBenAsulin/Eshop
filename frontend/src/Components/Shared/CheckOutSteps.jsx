@@ -1,4 +1,4 @@
-import { Col, PropTypes, Row } from "../../imports";
+import { Col, PropTypes, Row } from "../../imports.js";
 
 const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
   return (

@@ -1,4 +1,4 @@
-import { Card, Col, Link, ListGroup, PropTypes, Row } from "../../imports"
+import { Card, Col, Link, ListGroup, PropTypes, Row } from "../../imports.js"
 import MessageBox from "./MessageBox.jsx"
 
 const OrderSummary = ({ cart, status, isDelivered }) => {

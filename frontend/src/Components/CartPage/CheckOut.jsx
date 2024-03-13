@@ -1,4 +1,4 @@
-import { Button, Card, ListGroup, PropTypes } from "../../imports";
+import { Button, Card, ListGroup, PropTypes } from "../../imports.js";
 
 const Checkout = ({ cartItems, checkOutHandler }) => {
   return (

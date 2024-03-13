@@ -1,4 +1,4 @@
-import { ListGroup, PropTypes } from "../../imports";
+import { ListGroup, PropTypes } from "../../imports.js";
 import Rating from "../Shared/Rating.jsx";
 
 const ProductDescription = ({ title, rating, price, description }) => {

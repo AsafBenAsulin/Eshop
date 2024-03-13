@@ -3,11 +3,11 @@ import Container from "react-bootstrap/Container";
 import Badge from "react-bootstrap/Badge";
 import { LinkContainer } from "react-router-bootstrap";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import SearchBox from "./SearchBox";
-import { NavDropdown } from "../../imports";
+import SearchBox from "./SearchBox.jsx";
+import { NavDropdown } from "../../imports.js";
 import { useContext } from "react";
-import { Store } from "../../Store";
-import { USER_SIGNOUT } from "../../actions";
+import { Store } from "../../Store.jsx";
+import { USER_SIGNOUT } from "../../actions.jsx";
 const Header = () => {
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const {

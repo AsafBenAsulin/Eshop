@@ -6,7 +6,7 @@ import {
   ListGroup,
   PropTypes,
   Row,
-} from "../../imports";
+} from "../../imports.js";
 
 const CartDescription = ({ product, addToCart }) => {
   return (

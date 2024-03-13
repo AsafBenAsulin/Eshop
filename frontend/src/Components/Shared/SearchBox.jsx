@@ -4,7 +4,7 @@ import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { getFilterURI } from "../../utils";
+import { getFilterURI } from "../../utils.jsx";
 
 const SearchBox = () => {
   const [query, setQuery] = useState("");

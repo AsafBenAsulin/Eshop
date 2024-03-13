@@ -6,7 +6,7 @@ import {
   SAVE_SHIPPING_ADDRESS,
   SAVE_PAYMENT_METHOD,
   CLEAR_CART,
-} from "../actions";
+} from "../actions.jsx";
 
 const storeReducer = (state, action) => {
   switch (action.type) {

@@ -1,4 +1,4 @@
-import { GET_FAIL, GET_REQUEST, GET_SUCCESS } from "../actions";
+import { GET_FAIL, GET_REQUEST, GET_SUCCESS } from "../actions.jsx";
 
 const searchPageReducer = (state, action) => {
   switch (action.type) {

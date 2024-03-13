@@ -1,5 +1,5 @@
-import { Button, Col, Link, ListGroup, PropTypes, Row } from "../../imports";
-import MessageBox from "../Shared/MessageBox";
+import { Button, Col, Link, ListGroup, PropTypes, Row } from "../../imports.js";
+import MessageBox from "../Shared/MessageBox.jsx";
 
 const ItemsInCart = ({
   cartItems,

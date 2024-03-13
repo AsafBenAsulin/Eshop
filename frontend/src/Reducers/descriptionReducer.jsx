@@ -1,4 +1,4 @@
-import { GET_FAIL, GET_REQUEST, GET_SUCCESS } from "../actions";
+import { GET_FAIL, GET_REQUEST, GET_SUCCESS } from "../actions.jsx";
 
 const descriptionReducer = (state, action) => {
   switch (action.type) {
