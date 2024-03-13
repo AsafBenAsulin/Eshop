@@ -1,7 +1,5 @@
-import React from "react"
-import { Button, Card, Col, PropTypes, Row } from "../../imports"
+import { Button, Card, Col, ListGroup, PropTypes, Row } from "../../imports"
 import Loading from "./Loading.jsx"
-import ListGroup from 'react-bootstrap/ListGroup';
 
 const PaymentSummary = ({ loading, cart, status, submitOrderHandler }) => {
     return (

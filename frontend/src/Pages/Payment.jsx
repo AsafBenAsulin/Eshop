@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-import { Store } from '../store';
-import Title from '../Components/Shared/Title';
-import CheckOutSteps from '../Components/Shared/CheckOutSteps';
-import { Button, Form } from '../imports';
-import { SAVE_PAYMENT_METHOD } from '../Actions';
+import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Store } from "../Store";
+import Title from "../Components/Shared/Title";
+import CheckoutSteps from "../Components/Shared/CheckoutSteps";
+import { Button, Form } from "../imports";
+import { SAVE_PAYMENT_METHOD } from "../actions";
 
 const Payment = () => {
     const navigate = useNavigate();
@@ -14,9 +14,9 @@ const Payment = () => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-
         ctxDispatch({ type: SAVE_PAYMENT_METHOD, payload: paymentMethodName });
         localStorage.setItem('paymentMethod', paymentMethodName);
+        console.log(state);
         navigate('/placeorder');
     }
 
@@ -34,7 +34,7 @@ const Payment = () => {
     return (
         <div>
             <Title title='Payment' />
-            <CheckOutSteps step1 step2 step3 />
+            <CheckoutSteps step1 step2 step3 />
             <div className="container small-container">
                 <h1 className="my-3">Shipping Address</h1>
                 <Form onSubmit={submitHandler}>
@@ -47,7 +47,7 @@ const Payment = () => {
                             onChange={(e) => setPaymentMethodName(e.target.value)} />
                     </div>
                     <div className="mb-3">
-                        <Button variant='primary' type="submit">Continue</Button>
+                        <Button variant="primary" type="sumbit">Continue</Button>
                     </div>
                 </Form>
             </div>

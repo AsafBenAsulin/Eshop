@@ -1,49 +1,43 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { Store } from '../store';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { getError } from '../utils';
-import CheckOutSteps from '../Components/Shared/CheckOutSteps';
-import Title from '../Components/Shared/Title';
-import { Col, Row, axios } from '../imports';
-import OrderSummery from '../Components/Shared/OrderSummery';
-import PaymentSummary from '../Components/Shared/PaymentSummary';
-import { CLEAR_CART } from '../Actions';
+import { useContext, useEffect, useState } from "react"
+import { Store } from "../Store.jsx";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { getError } from "../utils.jsx";
+import Title from "../Components/Shared/Title.jsx";
+import CheckoutSteps from "../Components/Shared/CheckoutSteps.jsx";
+import { Col, Row, axios } from "../imports.js";
+import OrderSummary from "../Components/Shared/OrderSummary.jsx";
+import PaymentSummary from "../Components/Shared/PaymentSummary.jsx";
+import { CLEAR_CART } from "../actions.jsx";
 
 const SubmitOrder = () => {
-    const { state, dispatch: ctxDispatch } = useContext(Store)
+    const { state, dispatch: ctxDispatch } = useContext(Store);
     const { cart, userInfo } = state;
-    const [loading, setLoading] = useState();
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!cart.paymentMethod)
+        if (!cart.paymentMethod) {
             navigate("/payment");
+        }
 
-    }, []);
+    }, [])
 
     const submitOrderHandler = async () => {
         try {
             setLoading(true);
-            const orderData = {
-                orderItems: cart.cartItems,
-                shippingAddress: cart.shippingAddress,
-                paymentMethod: cart.paymentMethod,
-                itemsPrice: cart.itemsPrice,
-                shippingPrice: cart.shippingPrice,
-                taxPrice: cart.taxPrice,
-                totalPrice: cart.totalPrice
-            };
+            const orderData = { orderItems: cart.cartItems, shippingAddress: cart.shippingAddress, paymentMethod: cart.paymentMethod, itemsPrice: cart.itemsPrice, shippingPrice: cart.shippingPrice, taxPrice: cart.taxPrice, totalPrice: cart.totalPrice }
             const { data } = await axios.post("/api/v1/orders", orderData, { headers: { authorization: `Bearer ${userInfo.token}` } })
-            ctxDispatch({ type: CLEAR_CART });
+            ctxDispatch({ type: CLEAR_CART })
             localStorage.removeItem("cartItems");
-            navigate(`order/${data.order._id}`)
+            navigate(`/orders/${data.order._id}`);
         } catch (error) {
             toast.error(getError(error));
-        } finally {
+        }
+        finally {
             setLoading(false);
         }
-    }
+    };
 
     const round2 = (number) => Math.round(number * 100 + Number.EPSILON) / 100;
 
@@ -59,15 +53,15 @@ const SubmitOrder = () => {
 
     return (
         <div>
-            <Title title="Submit Order" />
-            <CheckOutSteps step1 step2 step3 step4 />
-            <h1 className='my-3'>Order summery</h1>
+            <Title title="Order Summary" />
+            <CheckoutSteps step1 step2 step3 step4 />
+            <h1 className="my-3">Order Summary</h1>
             <Row>
                 <Col md={8}>
-                    <OrderSummery cart={cart} status="submitOrder" ></OrderSummery>
+                    <OrderSummary cart={cart} status={"submitOrder"} />
                 </Col>
                 <Col md={4}>
-                    <PaymentSummary loading={loading} cart={cart} status="submitOrder" submitOrderHandler={submitOrderHandler}></PaymentSummary>
+                    <PaymentSummary loading={loading} submitOrderHandler={submitOrderHandler} status="submitOrder" cart={cart} />
                 </Col>
             </Row>
         </div>

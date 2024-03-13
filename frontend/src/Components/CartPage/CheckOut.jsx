@@ -1,36 +1,41 @@
-import React from 'react'
-import { Button, Card, PropTypes } from '../../imports';
-import ListGroup from 'react-bootstrap/ListGroup';
+import { Button, Card, ListGroup, PropTypes } from "../../imports";
 
-const CheckOut = ({ cartItems ,checkoutHandler}) => {
-    return (
-        <Card>
-            <Card.Body>
-                <ListGroup>
-                    <ListGroup.Item>
-                        <h3>Subtotal:
-                            {" ("}{cartItems.reduce((a, c) => a + c.quantity, 0)}
-                            {" "}
-                            {cartItems.Length === 1 ? "Item" : "Items"}
-                            {") "}
-                            ${cartItems.reduce((a, c) => a + c.quantity * c.price, 0).toFixed(2)}
-                        </h3>
-                    </ListGroup.Item>
-                    <ListGroup.Item>
-                        <div className='d-grid'>
-                            <Button type="button" variant='primary' disabled={cartItems.length===0} onClick={()=>checkoutHandler()}>
-                                Check Out
-                            </Button>
-                        </div>
-                    </ListGroup.Item>
-                </ListGroup>
-            </Card.Body>
-        </Card>
-    )
-}
-
-CheckOut.propTypes = {
-    cartItems: PropTypes.array,
-    checkoutHandler: PropTypes.func,
+const Checkout = ({ cartItems, checkOutHandler }) => {
+  return (
+    <Card>
+      <Card.Body>
+        <ListGroup>
+          <ListGroup.Item>
+            <h3>
+              Subtotal{" ("}
+              {cartItems.reduce((a, c) => a + c.quantity, 0)}{" "}
+              {cartItems.length === 1 ? "Item): " : "Items): "}$
+              {cartItems
+                .reduce((a, c) => a + c.quantity * c.price, 0)
+                .toFixed(2)}
+            </h3>
+          </ListGroup.Item>
+          <ListGroup.Item>
+            <div className="d-grid">
+              <Button
+                type="button"
+                disabled={cartItems.length === 0}
+                variant="primary"
+                onClick={() => checkOutHandler()}
+              >
+                Checkout
+              </Button>
+            </div>
+          </ListGroup.Item>
+        </ListGroup>
+      </Card.Body>
+    </Card>
+  );
 };
-export default CheckOut
+
+Checkout.propTypes = {
+  cartItems: PropTypes.array,
+  checkOutHandler: PropTypes.func,
+};
+
+export default Checkout;

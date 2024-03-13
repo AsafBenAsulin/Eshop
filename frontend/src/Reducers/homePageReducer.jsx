@@ -1,6 +1,6 @@
 import { GET_FAIL, GET_REQUEST, GET_SUCCESS } from "../actions";
 
-const descriptionReducer = (state, action) => {
+const homePageReducer = (state, action) => {
   switch (action.type) {
     case GET_REQUEST: {
       return { ...state, loading: true };
@@ -15,4 +15,4 @@ const descriptionReducer = (state, action) => {
       return { ...state };
   }
 };
-export default descriptionReducer;
+export default homePageReducer;

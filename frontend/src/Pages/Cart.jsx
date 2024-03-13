@@ -1,57 +1,61 @@
-import React, { useContext } from 'react'
-import { Store } from '../store';
-import Title from '../Components/Shared/Title';
-import { Col, Row, axios, toast } from '../imports';
-import ItemsInCart from '../Components/CartPage/ItemsInCart';
-import CheckOut from '../Components/CartPage/CheckOut';
-import { ADD_TO_CART, REMOVE_FROM_CART } from '../Actions';
-import { getError } from '../utils';
-import { useNavigate } from 'react-router-dom';
+import { useContext } from "react";
+import { Store } from "../Store";
+import Title from "../Components/Shared/Title";
+import { Col, Row, axios, toast } from "../imports";
+import ItemsInCart from "../Components/CartPage/ItemsInCart";
+import Checkout from "../Components/CartPage/Checkout";
+import { PRODUCT_ADD_TO_CART, PRODUCT_REMOVE_FROM_CART } from "../actions";
+import { getError } from "../utils";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
-    const { state, dispatch: ctxDispatch } = useContext(Store);
-    const { cart } = state;
-    const { cartItems } = cart;
-    const navigate = useNavigate();
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const { cart } = state;
+  const { cartItems } = cart;
+  const navigate = useNavigate();
 
-    const updateCartHandler = async (product, quantity) => {
-        try {
-            const { data } = await axios.get(`/api/v1/product/${product._id}`);
+  const updateCartHandler = async (product, quantity) => {
+    try {
+      const { data } = await axios.get(`/api/v1/products/${product._id}`);
 
-            if (data.countInStock < quantity) {
-                alert('Sorry, Product is out of stock');
-                return;
-            }
-            ctxDispatch({ type: ADD_TO_CART, payload: { ...product, quantity } });
-
-        } catch (err) {
-            toast.error(getError(err));
-        }
-
+      if (data.countInStock < quantity) {
+        alert("Sorry, product is out of stock");
+        return;
+      }
+      ctxDispatch({
+        type: PRODUCT_ADD_TO_CART,
+        payload: { ...product, quantity },
+      });
+    } catch (error) {
+      toast.error(getError(error));
     }
+  };
 
-    const removeItemHandler = async (product) => {
-        ctxDispatch({ type: REMOVE_FROM_CART, payload: product });
-    }
+  const removeProductHandler = async (product) => {
+    ctxDispatch({ type: PRODUCT_REMOVE_FROM_CART, payload: product });
+  };
 
-    const checkoutHandler = () => {
-        navigate("/signin?redirect=/shipping");
-    }
+  const checkOutHandler = async () => {
+    navigate("/signin?redirect=/shipping");
+  };
 
-    return (
-        <div>
-            <Title title={"My shopping cart"} />
-            <Row>
-                <Col md={8}>
-                    <ItemsInCart cartItems={cartItems} updateCartHandler={updateCartHandler} removeItemHandler={removeItemHandler}></ItemsInCart>
-                </Col>
-                <Col md={4} className='mt-2' style={{position:'fixed',right: 15}}>
-                    <CheckOut cartItems={cartItems} checkoutHandler={checkoutHandler}></CheckOut>
-                </Col>
-            </Row>
+  return (
+    <div>
+      <Title title={"Shopping Cart"}></Title>
+      <Row>
+        <Col md={8}>
+          <ItemsInCart
+            cartItems={cartItems}
+            updateCartHandler={updateCartHandler}
+            removeProductHandler={removeProductHandler}
+          />
+        </Col>
+        <Col md={4}>
+          <Checkout cartItems={cartItems} checkOutHandler={checkOutHandler} />
+        </Col>
+      </Row>
+    </div>
+  );
+};
 
-        </div>
-    )
-}
-
-export default Cart
+export default Cart;
