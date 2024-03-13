@@ -5,7 +5,7 @@ import App from "./App.jsx";
 import "./index.css";
 import { HelmetProvider } from "react-helmet-async";
 import axios from "axios";
-import { StoreProvider } from "./Store";
+import { StoreProvider } from "./Store.jsx";
 
 axios.defaults.baseURL =
   "https://eshop-ruddy.vercel.app/" || "http://localhost:8080";
