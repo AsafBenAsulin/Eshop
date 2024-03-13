@@ -24,8 +24,7 @@ app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });
 });
 
-mongoose
-  .connect(process.env.MONGO_CONNECTION_STRING) //make sure that you have a .env file
+mongoose.connect(process.env.MONGO_CONNECTION_STRING) //make sure that you have a .env file
   .then(() => {
     app.listen(PORT, function () {
       console.log("listening on " + PORT);
