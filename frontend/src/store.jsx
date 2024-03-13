@@ -2,6 +2,7 @@ import { createContext, useReducer } from "react";
 import storeReducer from "./Reducers/storeReducer";
 
 export const Store = createContext();
+
 const initialState = {
   userInfo: localStorage.getItem("userInfo")
     ? JSON.parse(localStorage.getItem("userInfo"))
