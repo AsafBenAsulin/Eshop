@@ -3,6 +3,7 @@
 full-stack using the MERN (MongoDB, Express.js, React.js, Node.js) stack. Leveraging React and Bootstrap for the frontend, and Node.js with Express and Mongoose for the backend, the project features user authentication with JWT. This comprehensive replica showcases my proficiency in modern web development technologies and frameworks. 
 
 on both use:
+
 npm i to install
 
 npm run dev to run
