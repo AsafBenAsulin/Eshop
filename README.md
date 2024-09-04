@@ -4,6 +4,7 @@ full-stack using the MERN (MongoDB, Express.js, React.js, Node.js) stack. Levera
 
 on both use:
 npm i to install
+
 npm run dev to run
 
 In case you want to change to your own database use the route /api/v1/seed
